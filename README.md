@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4.svg)](https://dotnet.microsoft.com/)
 [![CI](https://github.com/panoramicdata/Blink1.Api/actions/workflows/ci.yml/badge.svg)](https://github.com/panoramicdata/Blink1.Api/actions/workflows/ci.yml)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/9bcdb0171da54fe8b11857b9cfb8f404)](https://app.codacy.com/gh/panoramicdata/Blink1.Api/dashboard)
+[![Codacy Coverage](https://app.codacy.com/project/badge/Coverage/9bcdb0171da54fe8b11857b9cfb8f404)](https://app.codacy.com/gh/panoramicdata/Blink1.Api/dashboard)
 
 A typed, modern .NET client for the [ThingM blink(1)](https://blink1.thingm.com/) USB RGB LED: find the devices
 attached, and send every firmware command (colours and fades, single LEDs, stored patterns and playback, server tickle,
