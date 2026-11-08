@@ -99,17 +99,19 @@ public sealed partial class Blink1Client : IDisposable
 		report[1] = (byte)command.Code;
 		arguments.CopyTo(report, 2);
 
-		for (var attempt = 0; ; attempt++)
+		for (var attempt = 0; attempt < retries; attempt++)
 		{
 			try
 			{
 				return await ExchangeOnceAsync(command, report, readBack, settle, cancellationToken).ConfigureAwait(false);
 			}
-			catch (Blink1Exception ex) when (attempt < retries && ex.InnerException is IOException or TimeoutException)
+			catch (Blink1Exception ex) when (ex.InnerException is IOException or TimeoutException)
 			{
 				await Task.Delay(SettleTime, cancellationToken).ConfigureAwait(false);
 			}
 		}
+
+		return await ExchangeOnceAsync(command, report, readBack, settle, cancellationToken).ConfigureAwait(false);
 	}
 
 	private async Task<byte[]> ExchangeOnceAsync(Blink1Command command, byte[] report, bool readBack, TimeSpan settle, CancellationToken cancellationToken)
@@ -139,11 +141,11 @@ public sealed partial class Blink1Client : IDisposable
 		}
 	}
 
-	private void Transfer(Blink1Command command, Action<byte[]> transfer, byte[] buffer)
+	private void Transfer(Blink1Command command, Action<byte[]> featureReport, byte[] buffer)
 	{
 		try
 		{
-			transfer(buffer);
+			featureReport(buffer);
 		}
 		catch (Exception ex) when (ex is IOException or TimeoutException or UnauthorizedAccessException)
 		{

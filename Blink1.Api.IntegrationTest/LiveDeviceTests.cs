@@ -1,6 +1,6 @@
 namespace Blink1.Api.IntegrationTest;
 
-[Collection(LiveDevice.Name)]
+[Collection(typeof(LiveDevice))]
 public class LiveDeviceTests(Blink1Fixture fixture)
 {
 	private static CancellationToken Token => TestContext.Current.CancellationToken;

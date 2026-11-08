@@ -6,7 +6,7 @@ namespace Blink1.Api;
 public sealed partial class Blink1Client
 {
 	/// <summary>The size of one note, in bytes.</summary>
-	public const int NoteSize = 50;
+	public static int NoteSize => 50;
 
 	/// <summary>Reads the firmware version as a number, such as 204 for version 2.04 (command <c>v</c>).</summary>
 	[Blink1Command('v')]

@@ -14,8 +14,8 @@ Thank you for your interest in contributing to this project!
 ## Coding Standards
 
 - All public members must have XML documentation comments
-- Use `System.Text.Json` — do not introduce `Newtonsoft.Json`
-- Keep USB HID access behind the internal transport interface, so unit tests need no device
+- Use `System.Text.Json`; do not introduce `Newtonsoft.Json`
+- Use Refit for HTTP client interfaces
 - Use file-scoped namespaces
 - Use the `required` keyword for DTO properties where appropriate
 - Ensure `TreatWarningsAsErrors` remains enabled

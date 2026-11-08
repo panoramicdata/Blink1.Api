@@ -19,10 +19,10 @@ public sealed record Blink1DeviceInfo(
 	Blink1Generation Generation)
 {
 	/// <summary>The ThingM USB vendor ID.</summary>
-	public const int VendorId = 0x27B8;
+	public static int VendorId => 0x27B8;
 
 	/// <summary>The blink(1) USB product ID.</summary>
-	public const int ProductId = 0x01ED;
+	public static int ProductId => 0x01ED;
 
 	/// <summary>How many lines the stored colour pattern has, or 0 when the generation is unknown.</summary>
 	public int PatternLineCount => Generation switch

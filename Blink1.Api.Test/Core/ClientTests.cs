@@ -186,37 +186,24 @@ public class ClientTests
 		transport.Sent.Should().ContainSingle();
 	}
 
-	[Fact]
-	public async Task TransientFailures_StopAfterMaxRetries()
+	public static TheoryData<Exception, int, int> PersistentFailures => new()
 	{
-		var (client, transport) = TestDevices.Open(TestDevices.Mk2, static o => o.MaxRetries = 2);
-		transport.SetFailure = new IOException("gone");
+		{ new IOException("gone"), 2, 3 },
+		{ new TimeoutException("gone"), 3, 4 },
+		{ new IOException("gone"), 0, 1 },
+		{ new UnauthorizedAccessException("denied"), 3, 1 },
+	};
+
+	[Theory]
+	[MemberData(nameof(PersistentFailures))]
+	public async Task PersistentFailures_AreSentOnceThenRetriedOnlyIfTransient(Exception failure, int maxRetries, int expectedAttempts)
+	{
+		var (client, transport) = TestDevices.Open(TestDevices.Mk2, o => o.MaxRetries = maxRetries);
+		transport.SetFailure = failure;
 
 		await FluentActions.Awaiting(() => client.SetColorAsync(Blink1Colors.Red, None)).Should().ThrowAsync<Blink1Exception>();
 
-		transport.SetAttempts.Should().Be(3);
-	}
-
-	[Fact]
-	public async Task TransientFailures_AreNotRetriedWhenRetriesAreOff()
-	{
-		var (client, transport) = TestDevices.Open(TestDevices.Mk2, static o => o.MaxRetries = 0);
-		transport.SetFailure = new IOException("gone");
-
-		await FluentActions.Awaiting(() => client.SetColorAsync(Blink1Colors.Red, None)).Should().ThrowAsync<Blink1Exception>();
-
-		transport.SetAttempts.Should().Be(1);
-	}
-
-	[Fact]
-	public async Task AccessDenied_IsNotRetried()
-	{
-		var (client, transport) = TestDevices.Open(TestDevices.Mk2);
-		transport.SetFailure = new UnauthorizedAccessException("denied");
-
-		await FluentActions.Awaiting(() => client.SetColorAsync(Blink1Colors.Red, None)).Should().ThrowAsync<Blink1Exception>();
-
-		transport.SetAttempts.Should().Be(1);
+		transport.SetAttempts.Should().Be(expectedAttempts);
 	}
 
 	[Fact]

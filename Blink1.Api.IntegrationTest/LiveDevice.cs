@@ -1,8 +1,5 @@
 namespace Blink1.Api.IntegrationTest;
 
 /// <summary>Every live test shares one device, so they run one at a time against one fixture.</summary>
-[CollectionDefinition(Name)]
-public sealed class LiveDevice : ICollectionFixture<Blink1Fixture>
-{
-	public const string Name = "blink(1)";
-}
+[CollectionDefinition]
+public sealed class LiveDevice : ICollectionFixture<Blink1Fixture>;
