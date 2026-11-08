@@ -1,0 +1,1 @@
+# One docs/endpoints category per line while it is still being implemented. Empty: every command is implemented.
