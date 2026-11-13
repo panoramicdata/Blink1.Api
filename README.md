@@ -2,7 +2,7 @@
 
 [![NuGet](https://img.shields.io/nuget/v/Blink1.Api.svg)](https://www.nuget.org/packages/Blink1.Api)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4.svg)](https://dotnet.microsoft.com/)
+[![.NET 11.0](https://img.shields.io/badge/.NET-11.0-512BD4.svg)](https://dotnet.microsoft.com/)
 [![CI](https://github.com/panoramicdata/Blink1.Api/actions/workflows/ci.yml/badge.svg)](https://github.com/panoramicdata/Blink1.Api/actions/workflows/ci.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/9bcdb0171da54fe8b11857b9cfb8f404)](https://app.codacy.com/gh/panoramicdata/Blink1.Api/dashboard)
 [![Codacy Coverage](https://app.codacy.com/project/badge/Coverage/9bcdb0171da54fe8b11857b9cfb8f404)](https://app.codacy.com/gh/panoramicdata/Blink1.Api/dashboard)
@@ -10,6 +10,8 @@
 A typed, modern .NET client for the [ThingM blink(1)](https://blink1.thingm.com/) USB RGB LED: find the devices
 attached, and send every firmware command (colours and fades, single LEDs, stored patterns and playback, server tickle,
 notes, startup parameters and more) on Windows, Linux and macOS.
+
+Supports .NET 11.0.
 
 Blink1.Api is an independent open-source project by Panoramic Data Limited. It is not made, endorsed or supported by
 ThingM. blink(1) is a trademark of ThingM Corporation.
@@ -20,7 +22,7 @@ ThingM. blink(1) is a trademark of ThingM Corporation.
 dotnet add package Blink1.Api
 ```
 
-Blink1.Api targets .NET 10 and uses [HidSharp](https://www.nuget.org/packages/HidSharp) for USB HID access. On Linux,
+Blink1.Api targets .NET 11.0 and uses [HidSharp](https://www.nuget.org/packages/HidSharp) for USB HID access. On Linux,
 give your user access to the device with a udev rule, then replug it:
 
 ```text
