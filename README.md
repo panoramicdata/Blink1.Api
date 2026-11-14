@@ -7,6 +7,8 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/9bcdb0171da54fe8b11857b9cfb8f404)](https://app.codacy.com/gh/panoramicdata/Blink1.Api/dashboard)
 [![Codacy Coverage](https://app.codacy.com/project/badge/Coverage/9bcdb0171da54fe8b11857b9cfb8f404)](https://app.codacy.com/gh/panoramicdata/Blink1.Api/dashboard)
 
+> **Need help with APIs or .NET?** Panoramic Data are experts in APIs and .NET, and we can help with your development. [Contact us](https://www.panoramicdata.com/contact-us) or see our [software services](https://www.panoramicdata.com/services/software).
+
 A typed, modern .NET client for the [ThingM blink(1)](https://blink1.thingm.com/) USB RGB LED: find the devices
 attached, and send every firmware command (colours and fades, single LEDs, stored patterns and playback, server tickle,
 notes, startup parameters and more) on Windows, Linux and macOS.
